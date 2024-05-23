@@ -82,3 +82,40 @@ func (vm *VM) Sub() {
 
 	vm.Push(result)
 }
+
+// Multiplies two value on the stack
+func (vm *VM) Mult() {
+	if len(vm.Stack) < 2 {
+		panic("Cannot multiplies, not enough value on the stack.")
+	}
+
+	firstOperand := vm.Pop()
+	secondOperand := vm.Pop()
+
+	if firstOperand == 0 || secondOperand == 0 {
+		vm.Push(0)
+		return
+	}
+
+	result := secondOperand * firstOperand
+
+	vm.Push(result)
+}
+
+// Divide two value on the stack
+func (vm *VM) Div() {
+	if len(vm.Stack) < 2 {
+		panic("Cannot multiplies, not enough value on the stack.")
+	}
+
+	firstOperand := vm.Pop()
+	secondOperand := vm.Pop()
+
+	if firstOperand == 0 {
+		panic("Cannot divide by zero.")
+	}
+
+	result := secondOperand / firstOperand
+
+	vm.Push(result)
+}
