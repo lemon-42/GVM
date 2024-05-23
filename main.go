@@ -6,22 +6,26 @@ import (
 )
 
 func main() {
-	virtualMachine := vm.NewVM(1024, 1)
+	virtualMachine := vm.NewVM(15, 1)
 
-	virtualMachine.Push(0)
-	virtualMachine.Push(5)
+	instructions := []vm.Instruction{
+		{OpCode: "PUSH", Operand: 5},
+		{OpCode: "PUSH", Operand: 20},
+		{OpCode: "STORE", Operand: 0},
+	}
 
-	virtualMachine.PrintStack()
+	for _, instruction := range instructions {
+		virtualMachine.Execute(instruction)
+	}
 
-	//fmt.Println(virtualMachine.Pop())
-	//fmt.Println(virtualMachine.Pop())
+	instructions = []vm.Instruction{
+		{OpCode: "PUSH", Operand: 5},
+		{OpCode: "LOAD", Operand: 0},
+	}
 
-	//virtualMachine.Add()
-	//virtualMachine.Sub()
-	virtualMachine.Mult()
-	//virtualMachine.Div()
+	for _, instruction := range instructions {
+		virtualMachine.Execute(instruction)
+	}
 
-	virtualMachine.PrintStack()
-
-	fmt.Println(virtualMachine.Pop())
+	fmt.Println("Value at memory address 5 : ", virtualMachine.Pop())
 }
