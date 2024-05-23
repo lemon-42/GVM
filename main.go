@@ -8,14 +8,20 @@ import (
 func main() {
 	virtualMachine := vm.NewVM(1024, 1)
 
-	virtualMachine.Push(60)
-	virtualMachine.Push(10)
+	virtualMachine.Push(0)
+	virtualMachine.Push(5)
 
-	//fmt.Println(virtualMachine.Pop()) // show 20
-	//fmt.Println(virtualMachine.Pop()) // show 10
+	virtualMachine.PrintStack()
+
+	//fmt.Println(virtualMachine.Pop())
+	//fmt.Println(virtualMachine.Pop())
 
 	//virtualMachine.Add()
-	virtualMachine.Sub()
+	//virtualMachine.Sub()
+	virtualMachine.Mult()
+	//virtualMachine.Div()
 
-	fmt.Println(virtualMachine.Pop()) // should be 50
+	virtualMachine.PrintStack()
+
+	fmt.Println(virtualMachine.Pop())
 }
