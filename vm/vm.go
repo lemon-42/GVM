@@ -138,7 +138,7 @@ func (vm *VM) Mod() {
 	vm.Push(result)
 }
 
-// AND operator
+// AND bitwise operator
 func (vm *VM) And() {
 	if len(vm.Stack) < 2 {
 		panic("Cannot perform AND, not enough value on the stack.")
@@ -152,7 +152,7 @@ func (vm *VM) And() {
 	vm.Push(result)
 }
 
-// OR operator
+// OR bitwise operator
 func (vm *VM) Or() {
 	if len(vm.Stack) < 2 {
 		panic("Cannot perform OR, not enough value on the stack.")
@@ -166,6 +166,7 @@ func (vm *VM) Or() {
 	vm.Push(result)
 }
 
+// NOT bitwise operator
 func (vm *VM) Not() {
 	if len(vm.Stack) < 1 {
 		panic("Cannot perform NOT, not enough value on the stack.")
@@ -176,4 +177,34 @@ func (vm *VM) Not() {
 	result := ^operand
 
 	vm.Push(result)
+}
+
+// Load a value from a memory address
+func (vm *VM) Load() {
+	if len(vm.Stack) < 1 {
+		panic("Cannot load, no address on the stack.")
+	}
+
+	address := vm.Pop()
+	if address < 0 || address >= len(vm.Memory) {
+		panic("Memory access out of bounds.")
+	}
+
+	value := vm.Memory[address]
+	vm.Push(value)
+}
+
+// Store a value at a given memory address
+func (vm *VM) Store() {
+	if len(vm.Stack) < 2 {
+		panic("Cannot store, not enough address on the stack.")
+	}
+
+	value := vm.Pop()
+	address := vm.Pop()
+	if address < 0 || address >= len(vm.Memory) {
+		panic("Memory access out of bounds.")
+	}
+
+	vm.Memory[address] = value
 }
