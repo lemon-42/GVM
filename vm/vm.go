@@ -119,3 +119,61 @@ func (vm *VM) Div() {
 
 	vm.Push(result)
 }
+
+// Modulo of two operand on the stack
+func (vm *VM) Mod() {
+	if len(vm.Stack) < 2 {
+		panic("Cannot modulo, not enough value on the stack.")
+	}
+
+	firstOperand := vm.Pop()
+	secondOperand := vm.Pop()
+
+	if firstOperand == 0 {
+		panic("Cannot modulo by zero.")
+	}
+
+	result := secondOperand % firstOperand
+
+	vm.Push(result)
+}
+
+// AND operator
+func (vm *VM) And() {
+	if len(vm.Stack) < 2 {
+		panic("Cannot perform AND, not enough value on the stack.")
+	}
+
+	firstOperand := vm.Pop()
+	secondOperand := vm.Pop()
+
+	result := secondOperand & firstOperand
+
+	vm.Push(result)
+}
+
+// OR operator
+func (vm *VM) Or() {
+	if len(vm.Stack) < 2 {
+		panic("Cannot perform OR, not enough value on the stack.")
+	}
+
+	firstOperand := vm.Pop()
+	secondOperand := vm.Pop()
+
+	result := secondOperand | firstOperand
+
+	vm.Push(result)
+}
+
+func (vm *VM) Not() {
+	if len(vm.Stack) < 1 {
+		panic("Cannot perform NOT, not enough value on the stack.")
+	}
+
+	operand := vm.Pop()
+
+	result := ^operand
+
+	vm.Push(result)
+}
