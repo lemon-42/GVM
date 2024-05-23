@@ -23,10 +23,10 @@ Create a sample of how a virtual machine works in Golang using a stack.
 - [x] `Pop`
 - [x] `Add`
 - [x] `Sub`
-- [  ] `Mul`
-- [  ] `Div`
-- [  ] `Mod`
-- [  ] `And`
-- [  ] `Or`
-- [  ] `Not`
+- [x] `Mul`
+- [x] `Div`
+- [x] `Mod`
+- [x] `And`
+- [x] `Or`
+- [x] `Not`
 
