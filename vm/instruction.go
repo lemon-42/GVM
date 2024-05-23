@@ -27,6 +27,10 @@ func (vm *VM) Execute(instruction Instruction) {
 		vm.Or()
 	case "NOT":
 		vm.Not()
+	case "LOAD":
+		vm.Load()
+	case "STORE":
+		vm.Store()
 	default:
 		panic("unknown instruction")
 	}
