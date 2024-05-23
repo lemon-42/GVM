@@ -11,6 +11,10 @@ func (vm *VM) Execute(instruction Instruction) {
 		vm.Push(instruction.Operand)
 	case "POP":
 		vm.Pop()
+	case "ADD":
+		vm.Add()
+	case "SUB":
+		vm.Sub()
 	default:
 		panic("unknown instruction")
 	}
